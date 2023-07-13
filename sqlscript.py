@@ -8,10 +8,10 @@ db = mysql.connector.connect(
     host="localhost",
     user="root",
     password="admin",
-    database="testdatabase"
+    database="znanylekarzdb"
 )
 cursor = db.cursor()
-# cursor.execute("CREATE TABLE Person (name VARCHAR(50), age smallint UNSIGNED, personID int PRIMARY KEY AUTO_INCREMENT)")
+cursor.execute("CREATE TABLE DOCDAT (name VARCHAR(50), age smallint UNSIGNED, personID int PRIMARY KEY AUTO_INCREMENT)")
 # cursor.execute("DESCRIBE Person")
 # cursor.execute("INSERT INTO Person (name, age) VALUES (%s,%s)", ("Joe", 22)) #Inserting the data record to the Table of datafile
 # db.commit() #Without that the data base will not be updated
