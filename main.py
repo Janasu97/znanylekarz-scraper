@@ -96,6 +96,7 @@ print("You selected %s" % holdspecname)
 hold_url = "https://www.znanylekarz.pl/%s" % holdspecname
 url = hold_url
 
+recscrapcount = 0
 pagescount = int(input("Enter the number of pages to browse through for data scrapping: "))
 for i in range(0, pagescount): #The range can go up to 500. There is no url code after that, at least for the stomatologist
     if i > 0:
@@ -218,6 +219,8 @@ for i in range(0, pagescount): #The range can go up to 500. There is no url code
                     c.execute("INSERT INTO Medics (name, title, specID, locationID, companyID, price, avatar) VALUES (?,?,?,?,?,?,?)",
                               (hspecdocname,hspecdoctitle,medicspecID,holdlocationID,holdcompID,price,avatar_data))
 
+                    recscrapcount += 1
+
 
             #Add new record only if the main profile is not a company
             if profileiscompany == False:
@@ -237,9 +240,12 @@ for i in range(0, pagescount): #The range can go up to 500. There is no url code
                     c.execute("INSERT INTO Medics (name, title, specID, locationID, companyID, price, avatar) VALUES (?,?,?,?,?,?,?)",
                               (hdocname,hdoctitle,medicspecID,holdlocationID,holdcompID,price,avatar_data))
 
+                    recscrapcount += 1
 
         except Exception as e:
             pass
 
 conn.commit()
 conn.close()
+
+print("Operation completed. %s records scraped." % recscrapcount)
